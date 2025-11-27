@@ -26,6 +26,11 @@ rist-selfhosting/
 │   └── librist.a
 └── StatsServer.exe
 ```
+**EZ mode:**
+
+Download the bad file into your `rist-selfhosting` folder and double click the `RIST_Selfhosting.bat`
+
+
 For linux, linux_arm64, macos
 ```
 rist-selfhosting/
