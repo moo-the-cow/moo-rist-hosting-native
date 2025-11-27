@@ -4,9 +4,6 @@
 if [ -f "credentials.txt" ]; then
     echo "Loading existing credentials from credentials.txt"
     source credentials.txt
-    echo "Using existing credentials:"
-    echo "USERNAME: $USERNAME"
-    echo "PASSWORD: $PASSWORD"
 else
     # Generate random username with "moo-" prefix (max 20 chars total)
     chars="abcdefghijklmnopqrstuvwxyz0123456789"
@@ -23,19 +20,19 @@ else
         PASSWORD="${PASSWORD}${chars:$rand:1}"
     done
 
-    # Display new credentials
-    echo "Generated New Credentials:"
-    echo "USERNAME: $USERNAME"
-    echo "PASSWORD: $PASSWORD"
-    echo ""
-
     # Save credentials to file
     echo "USERNAME=$USERNAME" > credentials.txt
     echo "PASSWORD=$PASSWORD" >> credentials.txt
     echo "Credentials saved to credentials.txt"
 fi
 
+# Always display the credentials being used
 echo ""
+echo "Using credentials:"
+echo "USERNAME: $USERNAME"
+echo "PASSWORD: $PASSWORD"
+echo ""
+
 echo "Starting StatsServer and RIST tools..."
 echo "Press Ctrl+C to stop all processes and close this window"
 echo ""
