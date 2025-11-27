@@ -8,9 +8,6 @@ if exist credentials.txt (
         if "%%a"=="USERNAME" set "USERNAME=%%b"
         if "%%a"=="PASSWORD" set "PASSWORD=%%b"
     )
-    echo Using existing credentials:
-    echo USERNAME: !USERNAME!
-    echo PASSWORD: !PASSWORD!
 ) else (
     :: Generate new random username with "moo-" prefix (max 20 chars total)
     set "chars=abcdefghijklmnopqrstuvwxyz0123456789"
@@ -27,19 +24,19 @@ if exist credentials.txt (
         for %%c in (!rand!) do set "PASSWORD=!PASSWORD!!chars:~%%c,1!"
     )
 
-    :: Display new credentials
-    echo Generated New Credentials:
-    echo USERNAME: !USERNAME!
-    echo PASSWORD: !PASSWORD!
-    echo.
-
     :: Save credentials to file
     echo USERNAME=!USERNAME!> credentials.txt
     echo PASSWORD=!PASSWORD!>> credentials.txt
     echo Credentials saved to credentials.txt
 )
 
+:: Always display the credentials being used
 echo.
+echo Using credentials:
+echo USERNAME: !USERNAME!
+echo PASSWORD: !PASSWORD!
+echo.
+
 echo Starting StatsServer and RIST tools...
 echo Press any key to stop all processes and close this window
 echo.
