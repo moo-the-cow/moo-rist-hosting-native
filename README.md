@@ -40,3 +40,10 @@ rist-selfhosting/
 │   └── librist.a
 └── StatsServer
 ```
+**EZ mode:**
+
+Download the shell script into your `rist-selfhosting` folder and execute it
+
+```
+bash RIST_Selfhosting.sh
+```
