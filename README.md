@@ -10,7 +10,7 @@ There is a ReadMe section for each Operating System
 
 + [Mac](mac/README.md)
 
-##For all Platforms:
+## For all Platforms:
 Create a folder `rist-selfhosting` Copy both Zip files into that folder and extract both so it looks like
 For Windows
 ```
