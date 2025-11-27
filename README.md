@@ -1,6 +1,6 @@
 # moo-rist-hosting-native
 
-There is a ReadMe section for each Operating System
+Check out the zip files for each Operating System
 
 + [Windows](windows/README.md)
 
