@@ -1,5 +1,9 @@
 # moo-rist-hosting-native
 
+you can contact the developer on discord: https://discord.gg/khTtNJjFBY
+
+also check out the streaming board documentation on: https://irlbox.com/
+
 Check out the zip files for each Operating System
 
 + [Windows](windows/README.md)
