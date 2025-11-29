@@ -66,3 +66,24 @@ you can change the username or password any time, after it's generated the file 
 USERNAME=moo-msi9k7bifhjftdjr
 PASSWORD=peqt78sdxei83x6kdh2c0zoquaq7i4
 ```
+
+## for how to use RIST in OBS
+
+Create a MediaSource Item and uncheck "local"
+
+### HOME NETWORK
+put `rist://[RELAY_IP]:[RELAY_PORT]?cname=irlbox` into Input
+
+put `mpegts` into Input Format
+
+## Fix for OBS not refreshing the media source (OBS BUG please report on their github) on stream end (static html)
+
+It also shows a nice overlay showing the bitrate and rtt
+
+HTML Polling version
+
+https://raw.githubusercontent.com/moo-the-cow/streaming-tools/refs/heads/main/obs_RIST_media_source_refresh/index_rist_template.html
+
+Websocket version
+
+https://raw.githubusercontent.com/moo-the-cow/streaming-tools/refs/heads/main/obs_RIST_media_source_refresh/index_rist_websocket_template.html
