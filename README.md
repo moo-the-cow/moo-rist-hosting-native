@@ -49,6 +49,11 @@ rist-selfhosting/
 │   └── librist.a
 └── StatsServer
 ```
+### dependencies:
+apt install libcjson-dev libmicrohttpd-dev libembedtls-dev
+
+(true static build on the way)
+
 **EZ mode:**
 
 Download the shell script into your `rist-selfhosting` folder and execute it
