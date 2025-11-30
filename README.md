@@ -30,10 +30,9 @@ rist-selfhosting/
 ├── banner.txt
 ├── stats.json
 ├── librist
-|   ├── tools
-|   │   ├── ristreceiver.exe
-|   │   └── ristsender.exe
-│   └── librist.a
+|   └── tools
+|       ├── ristreceiver.exe
+|       └── ristsender.exe
 └── StatsServer.exe
 ```
 
@@ -49,10 +48,9 @@ rist-selfhosting/
 ├── banner.txt
 ├── stats.json
 ├── librist
-|   ├── tools
-|   │   ├── ristreceiver
-|   │   └── ristsender
-│   └── librist.a
+|   └── tools
+|       ├── ristreceiver
+|       └── ristsender
 └── StatsServer
 ```
 
