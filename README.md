@@ -10,6 +10,8 @@ also check out the streaming board documentation on: https://irlbox.com/
 ## Quick Start
 
 ### Requirement
+minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debian trixie)
+
 Check out the zip files for your Operating System
 
 + [Windows](windows/)
