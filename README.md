@@ -114,3 +114,10 @@ https://raw.githubusercontent.com/moo-the-cow/streaming-tools/refs/heads/main/ob
 Websocket version
 
 https://raw.githubusercontent.com/moo-the-cow/streaming-tools/refs/heads/main/obs_RIST_media_source_refresh/index_rist_websocket_template.html
+
+---
+## Troubleshooting
+### The http port 8080 is already used, what am I gonna do?
+just set an environment variable `env_http_port=8888` before the startup of the script or put it inside the script
+### The websocket port 8081 is already used, what am I gonna do?
+just set an environment variable `env_ws_port=8888` before the startup of the script or put it inside the script
