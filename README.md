@@ -9,13 +9,13 @@ also check out the streaming board documentation on: https://irlbox.com/
 ### Requirement
 Check out the zip files for your Operating System
 
-+ [Windows](windows/README.md)
++ [Windows](windows/)
 
-+ [Linux (x86_64)](linux/README.md)
++ [Linux (x86_64)](linux/)
 
-+ [Linux (arm64)](linux_arm64/README.md)
++ [Linux (arm64)](linux_arm64/)
 
-+ [Mac](mac/README.md)
++ [Mac](mac/)
 
 #### For all Platforms:
 Create a folder `rist-selfhosting` Copy both Zip files into that folder and extract both so it looks like
@@ -34,7 +34,7 @@ rist-selfhosting/
 └── StatsServer.exe
 ```
 
-Download the bad file into your `rist-selfhosting` folder and double click the `RIST_Selfhosting.bat`
+Download the bat file into your `rist-selfhosting` folder and double click the `RIST_Selfhosting.bat`
 
 #### Linux, linux_arm64, macos
 ```
