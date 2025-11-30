@@ -6,6 +6,7 @@ also check out the streaming board documentation on: https://irlbox.com/
 
 **related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/docker-streaming)
 
+---
 ## Quick Start
 
 ### Requirement
@@ -72,6 +73,21 @@ USERNAME=moo-msi9k7bifhjftdjr
 PASSWORD=peqt78sdxei83x6kdh2c0zoquaq7i4
 ```
 
+---
+## Description
+
+**ON IRLBOX USE NO ENCRYPTION BUT USERNAME AND PASSWORD TO THE RECEIVER IN ANY SETUP**
+
+**HOME-NETWORK:**
+`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (no-encryption, no-secret) => [OBS] (no-encryption, no-secret)`
+
+**REMOTE-RELAY:**
+`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (encryption, secret) => [OBS] (encryption, secret)`
+
+**Port Scenario:**
+`irlbox => 2030 | relay | <= 5556 OBS`
+
+---
 ## OBS Setup
 
 Create a MediaSource Item and uncheck "local"
@@ -86,6 +102,7 @@ put `rist://[RELAY_IP]:[RELAY_PORT]?cname=irlbox&aes-type=128&secret=[YOUR_VERY_
 
 put `mpegts` into Input Format
 
+---
 ## Fix for OBS not refreshing the media source (OBS BUG please report on their github) on stream end (static html)
 
 It also shows a nice overlay showing the bitrate and rtt
