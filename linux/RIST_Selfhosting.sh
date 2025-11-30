@@ -49,11 +49,11 @@ sleep 3
 
 # Run both RIST commands in background
 echo "Starting RIST tools..."
-chmod +x ./librist/rools/ristreceiver
+chmod +x ./librist/tools/ristreceiver
 ./librist/tools/ristreceiver -i "rist://@0.0.0.0:2030?rtt-min=100&username=$USERNAME&password=$PASSWORD" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1 &
 RECEIVER_PID=$!
 
-chmod +x ./librist/rools/ristsender
+chmod +x ./librist/tools/ristsender
 ./librist/tools/ristsender -i "udp://@127.0.0.1:12345" -o "rist://@0.0.0.0:5556?cname=moo-rist-relay" -p 1 &
 SENDER_PID=$!
 
