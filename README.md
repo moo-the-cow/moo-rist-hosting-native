@@ -4,7 +4,10 @@ you can contact the developer on discord: https://discord.gg/khTtNJjFBY
 
 also check out the streaming board documentation on: https://irlbox.com/
 
-Check out the zip files for each Operating System
+## Quick Start
+
+### Requirement
+Check out the zip files for your Operating System
 
 + [Windows](windows/README.md)
 
@@ -14,9 +17,9 @@ Check out the zip files for each Operating System
 
 + [Mac](mac/README.md)
 
-## For all Platforms:
+#### For all Platforms:
 Create a folder `rist-selfhosting` Copy both Zip files into that folder and extract both so it looks like
-For Windows
+#### Windows
 ```
 rist-selfhosting/
 ├── librist.zip
@@ -30,12 +33,10 @@ rist-selfhosting/
 │   └── librist.a
 └── StatsServer.exe
 ```
-**EZ mode:**
 
 Download the bad file into your `rist-selfhosting` folder and double click the `RIST_Selfhosting.bat`
 
-
-For linux, linux_arm64, macos
+#### Linux, linux_arm64, macos
 ```
 rist-selfhosting/
 ├── librist.zip
@@ -49,12 +50,6 @@ rist-selfhosting/
 │   └── librist.a
 └── StatsServer
 ```
-### dependencies:
-apt install libcjson-dev libmicrohttpd-dev libembedtls-dev
-
-(true static build on the way)
-
-**EZ mode:**
 
 Download the shell script into your `rist-selfhosting` folder and execute it
 
@@ -72,7 +67,7 @@ USERNAME=moo-msi9k7bifhjftdjr
 PASSWORD=peqt78sdxei83x6kdh2c0zoquaq7i4
 ```
 
-## for how to use RIST in OBS
+## OBS Setup
 
 Create a MediaSource Item and uncheck "local"
 
