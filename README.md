@@ -4,6 +4,8 @@ you can contact the developer on discord: https://discord.gg/khTtNJjFBY
 
 also check out the streaming board documentation on: https://irlbox.com/
 
+**related project:** [Docker Streaming Setup]([https://github.com/moo-the-cow/moo-rist-hosting-native](https://github.com/moo-the-cow/docker-streaming)) 
+
 ## Quick Start
 
 ### Requirement
