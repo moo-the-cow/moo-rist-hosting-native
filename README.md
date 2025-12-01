@@ -20,7 +20,7 @@ Check out the zip files for your Operating System
 
 + [Linux (arm64)](linux_arm64/)
 
-+ [Mac] (aarch64) (mac/)
++ [Mac (aarch64)](mac/)
 
 #### For all Platforms:
 Create a folder `rist-selfhosting` Copy both Zip files into that folder and extract both so it looks like
