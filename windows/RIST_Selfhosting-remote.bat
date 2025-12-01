@@ -80,7 +80,7 @@ timeout /t 3 /nobreak >nul
 
 :: Run both RIST commands in background using start /B (no new windows) with encryption
 echo Starting RIST tools with encryption...
-start /B "" librist\tools\ristreceiver.exe -i "rist://@0.0.0.0:2030?rtt-min=100&username=!USERNAME!&password=!PASSWORD!&aes-type=128&secret=!SECRET!" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1
+start /B "" librist\tools\ristreceiver.exe -i "rist://@0.0.0.0:2030?rtt-min=100&username=!USERNAME!&password=!PASSWORD!" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1
 start /B "" librist\tools\ristsender.exe -i "udp://@127.0.0.1:12345" -o "rist://@0.0.0.0:5556?cname=moo-rist-relay&aes-type=128&secret=!SECRET!" -p 1
 
 echo All processes are running in the background:
