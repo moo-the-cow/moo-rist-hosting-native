@@ -20,10 +20,10 @@ if [ -f "credentials.txt" ]; then
 else
     # Generate random username with "moo-" prefix (max 20 chars total)
     chars="abcdefghijklmnopqrstuvwxyz0123456789"
-    RIST_USERNAME="moo-"
+    USERNAME="moo-"
     for i in {1..16}; do
         rand=$((RANDOM % 36))
-        RIST_USERNAME="${RIST_USERNAME}${chars:$rand:1}"
+        USERNAME="${USERNAME}${chars:$rand:1}"
     done
 
     # Generate random password (30 characters)
@@ -41,7 +41,7 @@ else
     done
 
     # Save credentials to file
-    echo "RIST_USERNAME=$RIST_USERNAME" > credentials.txt
+    echo "USERNAME=$USERNAME" > credentials.txt
     echo "PASSWORD=$PASSWORD" >> credentials.txt
     echo "SECRET=$SECRET" >> credentials.txt
     echo "Credentials saved to credentials.txt"
@@ -50,7 +50,7 @@ fi
 # Always display the credentials being used
 echo ""
 echo "Using credentials:"
-echo "RIST_USERNAME: $RIST_USERNAME"
+echo "USERNAME: $USERNAME"
 echo "PASSWORD: $PASSWORD"
 echo "SECRET: $SECRET"
 echo "ENCRYPTION: 128"
@@ -73,7 +73,7 @@ sleep 3
 # Run both RIST commands in background with encryption
 echo "Starting RIST tools with encryption..."
 chmod +x ./librist/tools/ristreceiver
-./librist/tools/ristreceiver -i "rist://@0.0.0.0:2030?rtt-min=100&username=$RIST_USERNAME&password=$PASSWORD&aes-type=128&secret=$SECRET" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1 &
+./librist/tools/ristreceiver -i "rist://@0.0.0.0:2030?rtt-min=100&username=$USERNAME&password=$PASSWORD&aes-type=128&secret=$SECRET" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1 &
 RECEIVER_PID=$!
 
 chmod +x ./librist/tools/ristsender
