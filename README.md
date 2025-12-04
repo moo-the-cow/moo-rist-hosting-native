@@ -11,6 +11,12 @@ also check out the streaming board documentation on: https://irlbox.com/
 
 ### Requirement
 minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debian trixie)
+Open Ports
++ 2030 UDP
++ 5556 UDP
++ 8080 TCP
++ 8081 TCP
+
 
 Check out the zip files for your Operating System
 
