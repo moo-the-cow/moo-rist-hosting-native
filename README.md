@@ -15,8 +15,8 @@ minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debi
 Open Ports
 + 2030 UDP
 + 5556 UDP
-+ 8080 TCP
-+ 8081 TCP
++ 8080 TCP (http)
++ 8081 TCP (websocket)
 
 
 Check out the zip files for your Operating System
