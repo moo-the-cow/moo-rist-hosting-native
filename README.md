@@ -29,6 +29,8 @@ Check out the zip files for your Operating System
 
 + [Mac (aarch64)](mac/)
 
++ [Linux (arm32 bit](linux_armv7l_32bit/) - raspberry pi2 v1.1
+
 #### For all Platforms:
 Create a folder `rist-selfhosting` Copy both Zip files into that folder and extract both so it looks like
 #### Windows
