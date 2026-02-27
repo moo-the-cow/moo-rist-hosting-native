@@ -9,7 +9,9 @@ also check out the streaming board documentation on: https://irlbox.com/
 ---
 ## Quick Start
 
-for windows simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below.
+### RIST REMOTE
+#### windows
+simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below.
 
 ### Requirement
 minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debian trixie)
