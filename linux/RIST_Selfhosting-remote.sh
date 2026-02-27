@@ -97,7 +97,7 @@ sleep 3
 
 # Build receiver URL based on NOAUTH setting
 if [ "$NOAUTH" = "true" ]; then
-    RECEIVER_URL="rist://@0.0.0.0:2030?rtt-min=100"
+    RECEIVER_URL="rist://@0.0.0.0:2030?rtt-min=100&aes-type=$ENCRYPTION&secret=$SECRET"
 else
     RECEIVER_URL="rist://@0.0.0.0:2030?rtt-min=100&username=$USERNAME&password=$PASSWORD"
 fi
