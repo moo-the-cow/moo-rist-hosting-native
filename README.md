@@ -21,8 +21,8 @@ minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debi
 Open Ports
 + 2030 UDP (RECEIVER PORT)
 + 5556 UDP (RELAY PORT FOR OBS)
-+ 8080 TCP (http)
-+ 8081 TCP (websocket)
++ 8080 TCP (http stats)
++ 8081 TCP (websocket stats)
 
 
 Check out the zip files for your Operating System
