@@ -108,6 +108,8 @@ PASSWORD=peqt78sdxei83x6kdh2c0zoquaq7i4
 Create a MediaSource Item and uncheck "local"
 
 ### HOME NETWORK
+RELAY_PORT is by default 5556
+
 put `rist://[RELAY_IP]:[RELAY_PORT]?cname=irlbox` into Input
 
 put `mpegts` into Input Format
