@@ -19,8 +19,8 @@ simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/mo
 minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debian trixie)
 
 Open Ports
-+ 2030 UDP
-+ 5556 UDP
++ 2030 UDP (RECEIVER PORT)
++ 5556 UDP (RELAY PORT FOR OBS)
 + 8080 TCP (http)
 + 8081 TCP (websocket)
 
