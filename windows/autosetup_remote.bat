@@ -77,12 +77,12 @@ if exist credentials.txt (
     :: Set defaults for missing variables
     if !HAS_NOAUTH!==0 (
         set "NOAUTH=false"
-        echo NOAUTH=!NOAUTH! >> credentials.txt
+        echo NOAUTH=!NOAUTH!>> credentials.txt
         echo Added NOAUTH=false to credentials.txt
     )
     if !HAS_ENCRYPTION!==0 (
         set "ENCRYPTION=128"
-        echo ENCRYPTION=!ENCRYPTION! >> credentials.txt
+        echo ENCRYPTION=!ENCRYPTION!>> credentials.txt
         echo Added ENCRYPTION=128 to credentials.txt
     )
     :: Check if SECRET exists in credentials, if not generate and add it
@@ -94,7 +94,7 @@ if exist credentials.txt (
             set /a "rand=!random! %% 36"
             for %%c in (!rand!) do set "SECRET=!SECRET!!chars:~%%c,1!"
         )
-        echo SECRET=!SECRET! >> credentials.txt
+        echo SECRET=!SECRET!>> credentials.txt
         echo Added SECRET to credentials.txt
     )
 ) else (
@@ -124,12 +124,12 @@ if exist credentials.txt (
     set "NOAUTH=false"
     set "ENCRYPTION=128"
 
-    :: Save credentials to file
-    echo USERNAME=!USERNAME! > credentials.txt
-    echo PASSWORD=!PASSWORD! >> credentials.txt
-    echo SECRET=!SECRET! >> credentials.txt
-    echo NOAUTH=!NOAUTH! >> credentials.txt
-    echo ENCRYPTION=!ENCRYPTION! >> credentials.txt
+    :: Save credentials to file (no trailing spaces!)
+    echo USERNAME=!USERNAME!> credentials.txt
+    echo PASSWORD=!PASSWORD!>> credentials.txt
+    echo SECRET=!SECRET!>> credentials.txt
+    echo NOAUTH=!NOAUTH!>> credentials.txt
+    echo ENCRYPTION=!ENCRYPTION!>> credentials.txt
     echo Credentials saved to credentials.txt
 )
 
