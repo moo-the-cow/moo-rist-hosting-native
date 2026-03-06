@@ -11,8 +11,14 @@ also check out the streaming board documentation on: https://irlbox.com/
 
 ### RIST REMOTE
 #### windows
-simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below.
+simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below and double click it to start. you will need to allow the ports to be opened when asked.
 
+#### linux
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
+---
+### IRLWHATEVER Users:
+set `NOAUTH=true` in your generated `credentials.txt` to use encryption only
 ---
 
 ### Requirement
