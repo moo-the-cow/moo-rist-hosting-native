@@ -22,6 +22,9 @@ simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/m
 #### linux armv7l_32bit (raspberry 2 v1.1)
 simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux_armv7l_32bit/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
 
+#### mac (macOS)
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/mac/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
 ---
 ### IRLWHATEVER Users:
 set `NOAUTH=true` in your generated `credentials.txt` to use encryption only
