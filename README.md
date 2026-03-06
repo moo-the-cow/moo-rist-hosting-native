@@ -29,7 +29,7 @@ simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/m
 ### IRLWHATEVER Users:
 ~~set `NOAUTH=true` in your generated `credentials.txt` to use encryption only~~
 
-you can use the default setup for new versions
+you can use the default setup for new versions starting from 7th march 2026
 ---
 
 ### Requirement
