@@ -51,7 +51,7 @@ rist-selfhosting/
 ├── librist.zip
 ├── StatsServer.zip
 ├── banner.txt
-├── stats.json
+├── lofile.json
 ├── librist
 |   └── tools
 |       ├── ristreceiver.exe
@@ -69,7 +69,7 @@ rist-selfhosting/
 ├── librist.zip
 ├── StatsServer.zip
 ├── banner.txt
-├── stats.json
+├── lofile.json
 ├── librist
 |   └── tools
 |       ├── ristreceiver
