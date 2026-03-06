@@ -16,6 +16,9 @@ simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/mo
 #### linux
 simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
 
+#### linux arm64
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux_arm64/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
 ---
 ### IRLWHATEVER Users:
 set `NOAUTH=true` in your generated `credentials.txt` to use encryption only
