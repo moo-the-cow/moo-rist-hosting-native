@@ -25,6 +25,22 @@ simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/m
 #### mac (macOS)
 simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/mac/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
 
+### RIST HOME
+#### windows
+simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_home.bat) and put it into a folder that will contain all the files you will see below and double click it to start. you will need to allow the ports to be opened when asked.
+
+#### linux
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
+#### linux arm64
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux_arm64/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
+#### linux armv7l_32bit (raspberry 2 v1.1)
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux_armv7l_32bit/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
+#### mac (macOS)
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/mac/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+
 ---
 ### IRLWHATEVER Users:
 ~~set `NOAUTH=true` in your generated `credentials.txt` to use encryption only~~
