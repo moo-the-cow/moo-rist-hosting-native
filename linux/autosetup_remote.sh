@@ -57,8 +57,16 @@ echo "File check complete."
 echo ""
 
 # ------------------------------------------------------------
-# CREDENTIALS HANDLING (with NOAUTH and ENCRYPTION)
+# CREDENTIALS HANDLING (with PORTS, NOAUTH and ENCRYPTION)
 # ------------------------------------------------------------
+# Set default port values
+HTTP_PORT="8080"
+WS_PORT="8081"
+RIST_RECEIVER_PORT="2030"
+RIST_SENDER_PORT="5556"
+LOOPBACK_PORT="12345"
+STATS_PORT="5005"
+
 # Check if credentials file exists and load credentials
 if [ -f "credentials.txt" ]; then
     echo "Loading existing credentials from credentials.txt"
@@ -73,6 +81,12 @@ if [ -f "credentials.txt" ]; then
             SECRET) SECRET="$value" ;;
             NOAUTH) NOAUTH="$value" ;;
             ENCRYPTION) ENCRYPTION="$value" ;;
+            HTTP_PORT) HTTP_PORT="$value" ;;
+            WS_PORT) WS_PORT="$value" ;;
+            RIST_RECEIVER_PORT) RIST_RECEIVER_PORT="$value" ;;
+            RIST_SENDER_PORT) RIST_SENDER_PORT="$value" ;;
+            LOOPBACK_PORT) LOOPBACK_PORT="$value" ;;
+            STATS_PORT) STATS_PORT="$value" ;;
         esac
     done < "credentials.txt"
     
@@ -105,6 +119,32 @@ if [ -f "credentials.txt" ]; then
         done
         echo "SECRET=$SECRET" >> credentials.txt
         echo "Added SECRET to credentials.txt"
+    fi
+    
+    # Add port defaults if missing (check if they exist in file)
+    if ! grep -q "^HTTP_PORT=" credentials.txt; then
+        echo "HTTP_PORT=$HTTP_PORT" >> credentials.txt
+        echo "Added HTTP_PORT=$HTTP_PORT to credentials.txt"
+    fi
+    if ! grep -q "^WS_PORT=" credentials.txt; then
+        echo "WS_PORT=$WS_PORT" >> credentials.txt
+        echo "Added WS_PORT=$WS_PORT to credentials.txt"
+    fi
+    if ! grep -q "^RIST_RECEIVER_PORT=" credentials.txt; then
+        echo "RIST_RECEIVER_PORT=$RIST_RECEIVER_PORT" >> credentials.txt
+        echo "Added RIST_RECEIVER_PORT=$RIST_RECEIVER_PORT to credentials.txt"
+    fi
+    if ! grep -q "^RIST_SENDER_PORT=" credentials.txt; then
+        echo "RIST_SENDER_PORT=$RIST_SENDER_PORT" >> credentials.txt
+        echo "Added RIST_SENDER_PORT=$RIST_SENDER_PORT to credentials.txt"
+    fi
+    if ! grep -q "^LOOPBACK_PORT=" credentials.txt; then
+        echo "LOOPBACK_PORT=$LOOPBACK_PORT" >> credentials.txt
+        echo "Added LOOPBACK_PORT=$LOOPBACK_PORT to credentials.txt"
+    fi
+    if ! grep -q "^STATS_PORT=" credentials.txt; then
+        echo "STATS_PORT=$STATS_PORT" >> credentials.txt
+        echo "Added STATS_PORT=$STATS_PORT to credentials.txt"
     fi
 else
     # Generate random username with "moo-" prefix (max 20 chars total)
@@ -139,17 +179,31 @@ else
     echo "SECRET=$SECRET" >> credentials.txt
     echo "NOAUTH=$NOAUTH" >> credentials.txt
     echo "ENCRYPTION=$ENCRYPTION" >> credentials.txt
+    echo "HTTP_PORT=$HTTP_PORT" >> credentials.txt
+    echo "WS_PORT=$WS_PORT" >> credentials.txt
+    echo "RIST_RECEIVER_PORT=$RIST_RECEIVER_PORT" >> credentials.txt
+    echo "RIST_SENDER_PORT=$RIST_SENDER_PORT" >> credentials.txt
+    echo "LOOPBACK_PORT=$LOOPBACK_PORT" >> credentials.txt
+    echo "STATS_PORT=$STATS_PORT" >> credentials.txt
     echo "Credentials saved to credentials.txt"
 fi
 
 # Always display the credentials being used
 echo ""
-echo "Using credentials:"
+echo "Using configuration:"
 echo "USERNAME: $USERNAME"
 echo "PASSWORD: $PASSWORD"
 echo "SECRET: $SECRET"
 echo "NOAUTH: $NOAUTH"
 echo "ENCRYPTION: $ENCRYPTION"
+echo ""
+echo "Port Configuration:"
+echo "HTTP Stats Port: $HTTP_PORT"
+echo "WebSocket Stats Port: $WS_PORT"
+echo "RIST Receiver Port: $RIST_RECEIVER_PORT"
+echo "RIST Sender Port: $RIST_SENDER_PORT"
+echo "Loopback Port: $LOOPBACK_PORT"
+echo "Stats Feedback Port: $STATS_PORT"
 echo ""
 
 # Verify that required binaries exist
@@ -167,9 +221,14 @@ echo "Starting StatsServer and RIST tools (REMOTE version with encryption)..."
 echo "Press Ctrl+C to stop all processes and close this window"
 echo ""
 
-# Start StatsServer first
-echo "Starting StatsServer..."
-./StatsServer &
+# Set environment variables for StatsServer
+export env_udp_port=$STATS_PORT
+export env_http_port=$HTTP_PORT
+export env_ws_port=$WS_PORT
+
+# Start StatsServer with configured ports
+echo "Starting StatsServer on HTTP port $HTTP_PORT and WS port $WS_PORT..."
+./StatsServer -http "0.0.0.0:$HTTP_PORT" -ws "0.0.0.0:$WS_PORT" &
 STATS_PID=$!
 
 # Wait 3 seconds for StatsServer to startup
@@ -178,31 +237,32 @@ sleep 3
 
 # Build receiver URL based on NOAUTH setting
 if [ "$NOAUTH" = "true" ]; then
-    RECEIVER_URL="rist://@0.0.0.0:2030?rtt-min=100&aes-type=$ENCRYPTION&secret=$SECRET"
+    RECEIVER_URL="rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&aes-type=$ENCRYPTION&secret=$SECRET"
 else
-    RECEIVER_URL="rist://@0.0.0.0:2030?rtt-min=100&username=$USERNAME&password=$PASSWORD"
+    RECEIVER_URL="rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&username=$USERNAME&password=$PASSWORD"
 fi
 
 # Run both RIST commands in background with encryption
 echo "Starting RIST tools with encryption..."
-./librist/tools/ristreceiver -i "$RECEIVER_URL" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1 &
+./librist/tools/ristreceiver -i "$RECEIVER_URL" -o "rist://127.0.0.1:$LOOPBACK_PORT" -r "127.0.0.1:$STATS_PORT" -p 1 &
 RECEIVER_PID=$!
 
-./librist/tools/ristsender -i "udp://@127.0.0.1:12345" -o "rist://@0.0.0.0:5556?cname=moo-rist-relay&aes-type=$ENCRYPTION&secret=$SECRET" -p 1 &
+./librist/tools/ristsender -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay&aes-type=$ENCRYPTION&secret=$SECRET" -p 1 &
 SENDER_PID=$!
 
 echo "All processes are running in the background:"
-echo "- StatsServer (PID: $STATS_PID)"
-echo "- ristreceiver (PID: $RECEIVER_PID)"
-echo "- ristsender (PID: $SENDER_PID)"
+echo "- StatsServer (PID: $STATS_PID, HTTP:$HTTP_PORT, WS:$WS_PORT)"
+echo "- ristreceiver (PID: $RECEIVER_PID, in:$RIST_RECEIVER_PORT, loop:$LOOPBACK_PORT, stats:$STATS_PORT)"
+echo "- ristsender (PID: $SENDER_PID, out:$RIST_SENDER_PORT)"
 echo ""
 echo "REMOTE Configuration:"
 if [ "$NOAUTH" = "true" ]; then
-    echo "- Receiver: no authentication, $ENCRYPTION-bit encryption"
+    echo "- Receiver: no authentication, $ENCRYPTION-bit encryption on port $RIST_RECEIVER_PORT"
 else
-    echo "- Receiver: username/password + encryption"
+    echo "- Receiver: username/password + encryption on port $RIST_RECEIVER_PORT"
 fi
-echo "- Forwarder: encryption only (for OBS compatibility)"
+echo "- Forwarder: encryption only on port $RIST_SENDER_PORT (for OBS compatibility)"
+echo "- Stats: HTTP $HTTP_PORT, WebSocket $WS_PORT"
 echo ""
 echo "Press Ctrl+C to stop all processes"
 
