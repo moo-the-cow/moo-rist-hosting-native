@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: ============================================================
-:: CONFIGURATION – Download URLs (now correctly set)
+:: CONFIGURATION – Download URLs
 :: ============================================================
 set "STATS_SERVER_URL=https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/windows/StatsServer.zip"
 set "LIBRIST_URL=https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/windows/librist.zip"
@@ -49,14 +49,29 @@ echo File check complete.
 echo.
 
 :: ------------------------------------------------------------
-:: CREDENTIALS HANDLING (with NOAUTH and ENCRYPTION)
+:: CREDENTIALS HANDLING (with PORTS, NOAUTH and ENCRYPTION)
 :: ------------------------------------------------------------
+:: Set default port values
+set "HTTP_PORT=8080"
+set "WS_PORT=8081"
+set "RIST_RECEIVER_PORT=2030"
+set "RIST_SENDER_PORT=5556"
+set "LOOPBACK_PORT=12345"
+set "STATS_PORT=5005"
+
 :: Check if credentials file exists and load credentials
 if exist credentials.txt (
     echo Loading existing credentials from credentials.txt
     set "HAS_SECRET=0"
     set "HAS_NOAUTH=0"
     set "HAS_ENCRYPTION=0"
+    set "HAS_HTTP_PORT=0"
+    set "HAS_WS_PORT=0"
+    set "HAS_RECEIVER_PORT=0"
+    set "HAS_SENDER_PORT=0"
+    set "HAS_LOOPBACK_PORT=0"
+    set "HAS_STATS_PORT=0"
+    
     for /f "tokens=1,2 delims==" %%a in (credentials.txt) do (
         if "%%a"=="USERNAME" set "USERNAME=%%b"
         if "%%a"=="PASSWORD" set "PASSWORD=%%b"
@@ -72,6 +87,30 @@ if exist credentials.txt (
             set "ENCRYPTION=%%b"
             set "HAS_ENCRYPTION=1"
         )
+        if "%%a"=="HTTP_PORT" (
+            set "HTTP_PORT=%%b"
+            set "HAS_HTTP_PORT=1"
+        )
+        if "%%a"=="WS_PORT" (
+            set "WS_PORT=%%b"
+            set "HAS_WS_PORT=1"
+        )
+        if "%%a"=="RIST_RECEIVER_PORT" (
+            set "RIST_RECEIVER_PORT=%%b"
+            set "HAS_RECEIVER_PORT=1"
+        )
+        if "%%a"=="RIST_SENDER_PORT" (
+            set "RIST_SENDER_PORT=%%b"
+            set "HAS_SENDER_PORT=1"
+        )
+        if "%%a"=="LOOPBACK_PORT" (
+            set "LOOPBACK_PORT=%%b"
+            set "HAS_LOOPBACK_PORT=1"
+        )
+        if "%%a"=="STATS_PORT" (
+            set "STATS_PORT=%%b"
+            set "HAS_STATS_PORT=1"
+        )
     )
     
     :: Set defaults for missing variables
@@ -85,7 +124,6 @@ if exist credentials.txt (
         echo ENCRYPTION=!ENCRYPTION!>> credentials.txt
         echo Added ENCRYPTION=128 to credentials.txt
     )
-    :: Check if SECRET exists in credentials, if not generate and add it
     if !HAS_SECRET!==0 (
         echo SECRET not found in credentials.txt, generating new secret...
         set "chars=abcdefghijklmnopqrstuvwxyz0123456789"
@@ -96,6 +134,32 @@ if exist credentials.txt (
         )
         echo SECRET=!SECRET!>> credentials.txt
         echo Added SECRET to credentials.txt
+    )
+    
+    :: Add port defaults if missing
+    if !HAS_HTTP_PORT!==0 (
+        echo HTTP_PORT=!HTTP_PORT!>> credentials.txt
+        echo Added HTTP_PORT=!HTTP_PORT! to credentials.txt
+    )
+    if !HAS_WS_PORT!==0 (
+        echo WS_PORT=!WS_PORT!>> credentials.txt
+        echo Added WS_PORT=!WS_PORT! to credentials.txt
+    )
+    if !HAS_RECEIVER_PORT!==0 (
+        echo RIST_RECEIVER_PORT=!RIST_RECEIVER_PORT!>> credentials.txt
+        echo Added RIST_RECEIVER_PORT=!RIST_RECEIVER_PORT! to credentials.txt
+    )
+    if !HAS_SENDER_PORT!==0 (
+        echo RIST_SENDER_PORT=!RIST_SENDER_PORT!>> credentials.txt
+        echo Added RIST_SENDER_PORT=!RIST_SENDER_PORT! to credentials.txt
+    )
+    if !HAS_LOOPBACK_PORT!==0 (
+        echo LOOPBACK_PORT=!LOOPBACK_PORT!>> credentials.txt
+        echo Added LOOPBACK_PORT=!LOOPBACK_PORT! to credentials.txt
+    )
+    if !HAS_STATS_PORT!==0 (
+        echo STATS_PORT=!STATS_PORT!>> credentials.txt
+        echo Added STATS_PORT=!STATS_PORT! to credentials.txt
     )
 ) else (
     :: Generate new random username with "moo-" prefix (max 20 chars total)
@@ -123,6 +187,14 @@ if exist credentials.txt (
     :: Default values for new settings
     set "NOAUTH=false"
     set "ENCRYPTION=128"
+    
+    :: Default port values
+    set "HTTP_PORT=8080"
+    set "WS_PORT=8081"
+    set "RIST_RECEIVER_PORT=2030"
+    set "RIST_SENDER_PORT=5556"
+    set "LOOPBACK_PORT=12345"
+    set "STATS_PORT=5005"
 
     :: Save credentials to file (no trailing spaces!)
     echo USERNAME=!USERNAME!> credentials.txt
@@ -130,26 +202,64 @@ if exist credentials.txt (
     echo SECRET=!SECRET!>> credentials.txt
     echo NOAUTH=!NOAUTH!>> credentials.txt
     echo ENCRYPTION=!ENCRYPTION!>> credentials.txt
+    echo HTTP_PORT=!HTTP_PORT!>> credentials.txt
+    echo WS_PORT=!WS_PORT!>> credentials.txt
+    echo RIST_RECEIVER_PORT=!RIST_RECEIVER_PORT!>> credentials.txt
+    echo RIST_SENDER_PORT=!RIST_SENDER_PORT!>> credentials.txt
+    echo LOOPBACK_PORT=!LOOPBACK_PORT!>> credentials.txt
+    echo STATS_PORT=!STATS_PORT!>> credentials.txt
     echo Credentials saved to credentials.txt
 )
 
-:: Always display the credentials being used
+:: Always display the credentials and ports being used
 echo.
-echo Using credentials:
+echo Using configuration:
 echo USERNAME: !USERNAME!
 echo PASSWORD: !PASSWORD!
 echo SECRET: !SECRET!
 echo NOAUTH: !NOAUTH!
 echo ENCRYPTION: !ENCRYPTION!
 echo.
+echo Port Configuration:
+echo HTTP Stats Port: !HTTP_PORT!
+echo WebSocket Stats Port: !WS_PORT!
+echo RIST Receiver Port: !RIST_RECEIVER_PORT!
+echo RIST Sender Port: !RIST_SENDER_PORT!
+echo Loopback Port: !LOOPBACK_PORT!
+echo Stats Feedback Port: !STATS_PORT!
+echo.
+
+:: Verify that required executables exist
+if not exist "StatsServer.exe" (
+    echo ERROR: StatsServer.exe not found!
+    pause
+    exit /b 1
+)
+
+if not exist "librist\tools\ristreceiver.exe" (
+    echo ERROR: ristreceiver.exe not found in librist\tools\
+    pause
+    exit /b 1
+)
+
+if not exist "librist\tools\ristsender.exe" (
+    echo ERROR: ristsender.exe not found in librist\tools\
+    pause
+    exit /b 1
+)
 
 echo Starting StatsServer and RIST tools (REMOTE version with encryption)...
 echo Press any key to stop all processes and close this window
 echo.
 
-:: Start StatsServer first
-echo Starting StatsServer.exe...
-start /B "" StatsServer.exe
+:: Set environment variables for StatsServer
+set env_udp_port=%STATS_PORT%
+set env_http_port=%HTTP_PORT%
+set env_ws_port=%WS_PORT%
+
+:: Start StatsServer with configured ports
+echo Starting StatsServer.exe on HTTP port !HTTP_PORT! and WS port !WS_PORT!...
+start /B "" "StatsServer.exe" -http "0.0.0.0:!HTTP_PORT!" -ws "0.0.0.0:!WS_PORT!"
 
 :: Wait 3 seconds for StatsServer to startup
 echo Waiting 3 seconds for StatsServer to initialize...
@@ -157,35 +267,38 @@ timeout /t 3 /nobreak >nul
 
 :: Build receiver URL based on NOAUTH setting
 if /i "!NOAUTH!"=="true" (
-    set "RECEIVER_URL=rist://@0.0.0.0:2030?rtt-min=100&aes-type=!ENCRYPTION!&secret=!SECRET!"
+    set "RECEIVER_URL=rist://@0.0.0.0:!RIST_RECEIVER_PORT!?rtt-min=100&aes-type=!ENCRYPTION!&secret=!SECRET!"
 ) else (
-    set "RECEIVER_URL=rist://@0.0.0.0:2030?rtt-min=100&username=!USERNAME!&password=!PASSWORD!"
+    set "RECEIVER_URL=rist://@0.0.0.0:!RIST_RECEIVER_PORT!?rtt-min=100&username=!USERNAME!&password=!PASSWORD!"
 )
 
 :: Run both RIST commands in background using start /B (no new windows) with encryption
 echo Starting RIST tools with encryption...
-start /B "" librist\tools\ristreceiver.exe -i "!RECEIVER_URL!" -o "rist://127.0.0.1:12345" -r "127.0.0.1:5005" -p 1
-start /B "" librist\tools\ristsender.exe -i "udp://@127.0.0.1:12345" -o "rist://@0.0.0.0:5556?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p 1
+start /B "" "librist\tools\ristreceiver.exe" -i "!RECEIVER_URL!" -o "rist://127.0.0.1:!LOOPBACK_PORT!" -r "127.0.0.1:!STATS_PORT!" -p 1
+start /B "" "librist\tools\ristsender.exe" -i "udp://@127.0.0.1:!LOOPBACK_PORT!" -o "rist://@0.0.0.0:!RIST_SENDER_PORT!?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p 1
 
 echo All processes are running in the background:
-echo - StatsServer.exe
-echo - librist\tools\ristreceiver.exe
-echo - librist\tools\ristsender.exe
+echo - StatsServer.exe (HTTP:!HTTP_PORT!, WS:!WS_PORT!)
+echo - librist\tools\ristreceiver.exe (in:!RIST_RECEIVER_PORT!, loop:!LOOPBACK_PORT!, stats:!STATS_PORT!)
+echo - librist\tools\ristsender.exe (out:!RIST_SENDER_PORT!)
 echo.
 echo REMOTE Configuration:
 if /i "!NOAUTH!"=="true" (
-    echo - Receiver: no authentication, !ENCRYPTION!-bit encryption
+    echo - Receiver: no authentication, !ENCRYPTION!-bit encryption on port !RIST_RECEIVER_PORT!
 ) else (
-    echo - Receiver: username/password + encryption
+    echo - Receiver: username/password + encryption on port !RIST_RECEIVER_PORT!
 )
-echo - Forwarder: encryption only (for OBS compatibility)
+echo - Forwarder: encryption only on port !RIST_SENDER_PORT! (for OBS compatibility)
+echo - Stats: HTTP !HTTP_PORT!, WebSocket !WS_PORT!
 echo.
 echo Press any key to stop all processes and close...
 pause >nul
 
 :: Kill all processes when key is pressed
+echo Stopping all processes...
 taskkill /f /im StatsServer.exe >nul 2>&1
 taskkill /f /im ristreceiver.exe >nul 2>&1
 taskkill /f /im ristsender.exe >nul 2>&1
 
 echo All processes stopped. Closing...
+timeout /t 2 /nobreak >nul
