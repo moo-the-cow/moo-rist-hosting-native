@@ -275,7 +275,7 @@ if /i "!NOAUTH!"=="true" (
 :: Run both RIST commands in background using start /B (no new windows) with encryption
 echo Starting RIST tools with encryption...
 start /B "" "librist\tools\ristreceiver.exe" -i "!RECEIVER_URL!" -o "rist://127.0.0.1:!LOOPBACK_PORT!" -r "127.0.0.1:!STATS_PORT!" -p 1
-start /B "" "librist\tools\ristsender.exe" -i "udp://@127.0.0.1:!LOOPBACK_PORT!" -o "rist://@0.0.0.0:!RIST_SENDER_PORT!?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p 1
+start /B "" "librist\tools\ristsender.exe" -v -1 -i "udp://@127.0.0.1:!LOOPBACK_PORT!" -o "rist://@0.0.0.0:!RIST_SENDER_PORT!?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p 1
 
 echo All processes are running in the background:
 echo - StatsServer.exe (HTTP:!HTTP_PORT!, WS:!WS_PORT!)
@@ -302,3 +302,4 @@ taskkill /f /im ristsender.exe >nul 2>&1
 
 echo All processes stopped. Closing...
 timeout /t 2 /nobreak >nul
+
