@@ -189,7 +189,7 @@ echo "Starting RIST tools..."
 ./librist/tools/ristreceiver -i "rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&username=$USERNAME&password=$PASSWORD" -o "rist://127.0.0.1:$LOOPBACK_PORT" -r "127.0.0.1:$STATS_PORT" -p 1 &
 RECEIVER_PID=$!
 
-./librist/tools/ristsender -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay" -p 1 &
+./librist/tools/ristsender -v -1 -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay" -p 1 &
 SENDER_PID=$!
 
 echo "All processes are running in the background:"
