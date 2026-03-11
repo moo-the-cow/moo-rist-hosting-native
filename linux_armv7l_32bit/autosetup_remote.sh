@@ -247,7 +247,7 @@ echo "Starting RIST tools with encryption..."
 ./librist/tools/ristreceiver -i "$RECEIVER_URL" -o "rist://127.0.0.1:$LOOPBACK_PORT" -r "127.0.0.1:$STATS_PORT" -p 1 &
 RECEIVER_PID=$!
 
-./librist/tools/ristsender -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay&aes-type=$ENCRYPTION&secret=$SECRET" -p 1 &
+./librist/tools/ristsender -v -1 -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay&aes-type=$ENCRYPTION&secret=$SECRET" -p 1 &
 SENDER_PID=$!
 
 echo "All processes are running in the background:"
