@@ -44,16 +44,10 @@ simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/m
 simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/mac/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
 
 ---
-### IRLWHATEVER Users:
-~~set `NOAUTH=true` in your generated `credentials.txt` to use encryption only~~
-
-you can use the default setup for new versions starting from 7th march 2026
----
-
-### Requirement Linux/MacOs
+### Requirement Linux/MacOs:
 minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debian trixie)
 
-Open Ports
+### Open Ports (all Platforms)
 + 2030 UDP (RECEIVER PORT)
 + 5556 UDP (RELAY PORT FOR OBS)
 + 8080 TCP (http stats)
@@ -72,6 +66,10 @@ Open Ports
 
 **Port Scenario:**
 `irlbox => 2030 | relay | <= 5556 OBS`
+
+---
+### IRLWHATEVER Users:
+check out [IRLWHATEVER Users](README_irlwhatever.md)
 
 ---
 ## OBS Setup
