@@ -19,3 +19,4 @@ put `mpegts` into Input Format
 
 https://github.com/sniffingpickles/BitrateSceneSwitch
 
+![Refresh Fix](screenshots/image.png)
