@@ -9,6 +9,20 @@ If you plan to go for multiple instances you want to use this instead:
 **related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/docker-streaming)
 
 ---
+## Description
+
+**ON IRLBOX USE NO ENCRYPTION BUT USERNAME AND PASSWORD TO THE RECEIVER IN ANY SETUP**
+
+**HOME-NETWORK:**
+`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (no-encryption, no-secret) => [OBS] (no-encryption, no-secret)`
+
+**REMOTE-RELAY:**
+`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (encryption, secret) => [OBS] (encryption, secret)`
+
+**Port Scenario:**
+`irlbox => 2030 | relay | <= 5556 OBS`
+
+---
 ## Quick Start
 
 ### RIST REMOTE
@@ -52,20 +66,6 @@ minimum GLIBC version 2.38 (this means modern distros like ubtuntu 24.04 or debi
 + 5556 UDP (RELAY PORT FOR OBS)
 + 8080 TCP (http stats)
 + 8081 TCP (websocket stats)
-
----
-## Description
-
-**ON IRLBOX USE NO ENCRYPTION BUT USERNAME AND PASSWORD TO THE RECEIVER IN ANY SETUP**
-
-**HOME-NETWORK:**
-`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (no-encryption, no-secret) => [OBS] (no-encryption, no-secret)`
-
-**REMOTE-RELAY:**
-`[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (encryption, secret) => [OBS] (encryption, secret)`
-
-**Port Scenario:**
-`irlbox => 2030 | relay | <= 5556 OBS`
 
 ---
 ### IRLWHATEVER Users:
