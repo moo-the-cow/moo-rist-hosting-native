@@ -9,4 +9,4 @@ just set an environment variable `env_ws_port=8888` before the startup of the sc
 have a look at [librist old glibc](https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/patches/librist.tar.gz)
 and extract it to your folder and overwrite it
 
-```tar xvfz librist.tar.gz --overwrite```
+```rm -f librist.tar.gz && tar xvfz librist.tar.gz --overwrite```
