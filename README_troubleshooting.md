@@ -5,3 +5,8 @@ you can use the port opening tools for [Linux](https://raw.githubusercontent.com
 just set an environment variable `env_http_port=8888` before the startup of the script or put it inside the script
 ### The websocket port 8081 is already used, what am I gonna do?
 just set an environment variable `env_ws_port=8888` before the startup of the script or put it inside the script
+### I use debian bookworm and my glibc is too old to run librist
+have a look at [librist old glibc](Patches/librist.tar.gz)
+and extract it to your folder and overwrite it
+
+```tar xvfz librist.tar.gz --overwrite```
