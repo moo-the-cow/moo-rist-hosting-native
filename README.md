@@ -6,7 +6,7 @@ also check out the streaming board documentation on: https://irlbox.com/
 
 If you plan to go for multiple instances you want to use this instead:
 
-**related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/docker-streaming)
+**related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/moo-rist-hosting-docker)
 
 ---
 ## Description
