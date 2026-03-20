@@ -4,6 +4,8 @@ you can contact the developer on discord: https://discord.gg/khTtNJjFBY
 
 also check out the streaming board documentation on: https://irlbox.com/
 
+IRLBOX is using RIST BONDING and an advanced adaptive bitrate algorithm on top of the RIST integrated one
+
 If you plan to go for multiple instances you want to use this instead:
 
 **related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/moo-rist-hosting-docker)
