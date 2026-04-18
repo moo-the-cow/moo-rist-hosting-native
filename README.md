@@ -12,6 +12,8 @@ If you plan to go for multiple instances you want to use this instead:
 
 **related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/moo-rist-hosting-docker)
 
+**current version:** `libRIST library: v0.2.12 API version: 4.7.0`
+
 ---
 ## Description
 
