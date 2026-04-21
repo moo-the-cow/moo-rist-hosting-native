@@ -29,8 +29,8 @@ echo Replaced: librist\tools\ristreceiver.exe
 echo Replaced: librist\tools\ristsender.exe
 
 :: Cleanup
-del "StatsServer.zip" >nul
-del "librist.zip" >nul
+:: del "StatsServer.zip" >nul
+:: del "librist.zip" >nul
 
 echo Upgrade complete!
 pause
