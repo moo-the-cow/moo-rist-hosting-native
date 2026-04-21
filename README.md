@@ -31,6 +31,11 @@ If you plan to go for multiple instances you want to use this instead:
 ---
 ## Quick Start
 
+### Upgrade existing Setup
+just download the `upgrade.bat` or `upgrade.sh` from that folder of your architecture (in most cases windows or linux)
+
+upgrade is replacing core files, but keeping generated ones (like credentials)
+
 ### RIST REMOTE
 #### windows
 simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below and double click it to start. you will need to allow the ports to be opened when asked.
