@@ -33,8 +33,8 @@ echo "Replaced: librist/tools/ristreceiver"
 echo "Replaced: librist/tools/ristsender"
 
 # Cleanup
-rm -f "StatsServer.tar.gz"
-rm -f "librist.tar.gz"
+#rm -f "StatsServer.tar.gz"
+#rm -f "librist.tar.gz"
 
 echo ""
 echo "Upgrade complete!"
