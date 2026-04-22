@@ -25,7 +25,7 @@ If you plan to go for multiple instances you want to use this instead:
 **REMOTE-RELAY:**
 `[irlbox] (username,password,no-encryption,no secret) => [receiver] => [forwarder] (encryption, secret) => [OBS] (encryption, secret)`
 
-**Port Scenario:**
+**Port Scenario: ⚠️**
 `irlbox => 2030 | relay | <= 5556 OBS`
 
 ---
@@ -36,14 +36,14 @@ just download the `upgrade.bat` or `upgrade.sh` from that folder of your archite
 
 upgrade is replacing core files, but keeping generated ones (like credentials)
 
-### RIST REMOTE
+### RIST HOME (most common scenario)
 #### windows
-simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_remote.bat) and put it into a folder that will contain all the files you will see below and double click it to start. you will need to allow the ports to be opened when asked.
+simply download the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/windows/autosetup_home.bat) and put it into a folder that will contain all the files you will see below and double click it to start. you will need to allow the ports to be opened when asked.
 
 #### linux
-simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux/autosetup_remote.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
+simply download  the [autosetup](https://raw.githubusercontent.com/moo-the-cow/moo-rist-hosting-native/refs/heads/main/linux/autosetup_home.sh) and put it into a folder that will contain all the files you will see below. then `chmod +x autosetup_remote.sh` and `bash autosetup_remote.sh`
 
-#### all other architectures proceed like linux
+#### all other architectures proceed like linux (if you want to use remote you just need to download the autosetup for remote)
 
 ---
 ### Requirement Linux/MacOs:
