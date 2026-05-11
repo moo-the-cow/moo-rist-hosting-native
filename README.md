@@ -1,8 +1,6 @@
 # moo-rist-hosting-native
 
-you can contact the developer on discord: https://discord.gg/khTtNJjFBY
-
-I highly recommend to use my repository as I have contributed code to the RIST library myself you could call me the cow mascott of RIST, on a serious note: having a lot of know-how about this
+you can contact me on discord: https://discord.gg/khTtNJjFBY
 
 also check out the streaming board documentation on: https://irlbox.com/
 
