@@ -8,3 +8,7 @@ Steps:
 5. Start OBS and enjoy
 
 <img width="940" height="610" alt="image" src="https://github.com/user-attachments/assets/cab4c3b0-76fe-41b3-bd23-813a530c5021" />
+
+There is a chance that this dll might get overwritten on updates, so you will have to do that probably every time you perform an update.
+
+Feel free to create a ticket at OBS https://github.com/obsproject/obs-studio and tell them to permanently fix it updating the library
