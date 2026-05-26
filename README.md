@@ -61,7 +61,7 @@ check out [IRLWHATEVER Users](README_irlwhatever.md)
 
 ---
 ## OBS Setup
-check out [OBS Setup](README_obs.md)
+check out [OBS Setup](README_obs.md) and [important fixes](obs/README.md)!!
 
 ---
 ## Troubleshooting
