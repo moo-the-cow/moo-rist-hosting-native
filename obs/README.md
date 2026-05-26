@@ -1,7 +1,7 @@
 # Fixes for OBS having a high CPU load and crashes
 
 Steps:
-1. Download the zip file
+1. Download the [zip file](https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/obs/librist-windows-x64-dll.zip)
 2. Stop OBS
 3. Create a copy of your original librist.dll (just in case - see screenshot)
 4. Replace the `librist.dll` with the one from the zip
