@@ -12,3 +12,5 @@ Steps:
 <img width="940" height="610" alt="image" src="https://github.com/user-attachments/assets/cab4c3b0-76fe-41b3-bd23-813a530c5021" />
 
 There is a chance that this dll might get overwritten on updates, so you will have to do that probably every time you perform an update.
+
+Also new librist risturl arguments that would usually work like `&username=moo&password=xxx` need to be implemented by the OBS team. For unknown reason they don't just take the whole url but seem to parse and process it
