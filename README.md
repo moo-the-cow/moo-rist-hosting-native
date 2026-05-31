@@ -1,5 +1,4 @@
-# moo-rist-hosting-native
-
+# Self hosting native multiarch RIST receivers for IRL Streaming
 you can contact me on discord: https://discord.gg/khTtNJjFBY
 
 also check out the streaming board documentation on: https://irlbox.com/
