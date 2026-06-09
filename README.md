@@ -9,7 +9,7 @@ If you plan to go for multiple instances you want to use this instead:
 
 **related project:** [Docker Streaming Setup](https://github.com/moo-the-cow/moo-rist-hosting-docker)
 
-**current version:** `libRIST library: v0.2.15-42-g56b7c3b API version: 4.7.0`
+**current version:** `libRIST library: 0.2.18-rc1-20-g8461d46 API version: 4.10.0`
 
 ---
 ## Description
