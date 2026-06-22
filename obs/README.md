@@ -3,10 +3,10 @@
 Feel free to create a ticket at OBS https://github.com/obsproject/obs-studio and tell them to **permanently fix it updating the library** (simple enough)
 
 Steps:
-1. Download the [zip file](https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/obs/librist-windows-x64-dll.zip)
+1. Download the [dll file](https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/obs/librist.dll)
 2. Stop OBS
 3. Create a copy of your original librist.dll (just in case - see screenshot)
-4. Replace the `librist.dll` with the one from the zip
+4. Replace the `librist.dll` with the one you downloaded
 5. Start OBS and enjoy
 
 <img width="940" height="610" alt="image" src="https://github.com/user-attachments/assets/cab4c3b0-76fe-41b3-bd23-813a530c5021" />
