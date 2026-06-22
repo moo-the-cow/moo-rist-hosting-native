@@ -58,6 +58,7 @@ set "RIST_RECEIVER_PORT=2030"
 set "RIST_SENDER_PORT=5556"
 set "LOOPBACK_PORT=12345"
 set "STATS_PORT=5005"
+set "RIST_PROFILE=1"
 
 :: Check if credentials file exists and load credentials
 if exist credentials.txt (
@@ -71,6 +72,7 @@ if exist credentials.txt (
     set "HAS_SENDER_PORT=0"
     set "HAS_LOOPBACK_PORT=0"
     set "HAS_STATS_PORT=0"
+	set "HAS_RIST_PROFILE=0"
     
     for /f "tokens=1,2 delims==" %%a in (credentials.txt) do (
         if "%%a"=="USERNAME" set "USERNAME=%%b"
@@ -110,6 +112,10 @@ if exist credentials.txt (
         if "%%a"=="STATS_PORT" (
             set "STATS_PORT=%%b"
             set "HAS_STATS_PORT=1"
+        )
+		if "%%a"=="RIST_PROFILE" (
+            set "RIST_PROFILE=%%b"
+            set "HAS_RIST_PROFILE=1"
         )
     )
     
@@ -161,6 +167,10 @@ if exist credentials.txt (
         echo STATS_PORT=!STATS_PORT!>> credentials.txt
         echo Added STATS_PORT=!STATS_PORT! to credentials.txt
     )
+	if !HAS_RIST_PROFILE!==0 (
+        echo RIST_PROFILE=!RIST_PROFILE!>> credentials.txt
+        echo Added RIST_PROFILE=!RIST_PROFILE! to credentials.txt
+    )
 ) else (
     :: Generate new random username with "moo-" prefix (max 20 chars total)
     set "chars=abcdefghijklmnopqrstuvwxyz0123456789"
@@ -195,6 +205,7 @@ if exist credentials.txt (
     set "RIST_SENDER_PORT=5556"
     set "LOOPBACK_PORT=12345"
     set "STATS_PORT=5005"
+	set "RIST_PROFILE=1"
 
     :: Save credentials to file (no trailing spaces!)
     echo USERNAME=!USERNAME!> credentials.txt
@@ -208,6 +219,7 @@ if exist credentials.txt (
     echo RIST_SENDER_PORT=!RIST_SENDER_PORT!>> credentials.txt
     echo LOOPBACK_PORT=!LOOPBACK_PORT!>> credentials.txt
     echo STATS_PORT=!STATS_PORT!>> credentials.txt
+	echo RIST_PROFILE=!RIST_PROFILE!>> credentials.txt
     echo Credentials saved to credentials.txt
 )
 
@@ -274,8 +286,8 @@ if /i "!NOAUTH!"=="true" (
 
 :: Run both RIST commands in background using start /B (no new windows) with encryption
 echo Starting RIST tools with encryption...
-start /B "" "librist\tools\ristreceiver.exe" -i "!RECEIVER_URL!" -o "rist://127.0.0.1:!LOOPBACK_PORT!" -r "127.0.0.1:!STATS_PORT!" -p 1
-start /B "" "librist\tools\ristsender.exe" -v -1 -i "udp://@127.0.0.1:!LOOPBACK_PORT!" -o "rist://@0.0.0.0:!RIST_SENDER_PORT!?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p 1
+start /B "" "librist\tools\ristreceiver.exe" -i "!RECEIVER_URL!" -o "rist://127.0.0.1:!LOOPBACK_PORT!" -r "127.0.0.1:!STATS_PORT!" -p !RIST_PROFILE!
+start /B "" "librist\tools\ristsender.exe" -v -1 -i "udp://@127.0.0.1:!LOOPBACK_PORT!" -o "rist://@0.0.0.0:!RIST_SENDER_PORT!?cname=moo-rist-relay&aes-type=!ENCRYPTION!&secret=!SECRET!" -p !RIST_PROFILE!
 
 echo All processes are running in the background:
 echo - StatsServer.exe (HTTP:!HTTP_PORT!, WS:!WS_PORT!)

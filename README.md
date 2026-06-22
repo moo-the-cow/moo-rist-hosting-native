@@ -54,6 +54,11 @@ update: in the folder [PATCHES](patches/) you can find a patch for older debian 
 + 8080 TCP (http stats)
 + 8081 TCP (websocket stats)
 
+### RIST PROFILE
+default is 1 (main)
+2 (advanced)
+This can be rewritten in the credentials.txt manually if needed
+
 ---
 ### IRLWHATEVER Users:
 check out [IRLWHATEVER Users](README_irlwhatever.md)

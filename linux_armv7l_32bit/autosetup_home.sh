@@ -66,6 +66,7 @@ RIST_RECEIVER_PORT="2030"
 RIST_SENDER_PORT="5556"
 LOOPBACK_PORT="12345"
 STATS_PORT="5005"
+RIST_PROFILE=1
 
 # Check if credentials file exists and load credentials
 if [ -f "credentials.txt" ]; then
@@ -84,6 +85,7 @@ if [ -f "credentials.txt" ]; then
             RIST_SENDER_PORT) RIST_SENDER_PORT="$value" ;;
             LOOPBACK_PORT) LOOPBACK_PORT="$value" ;;
             STATS_PORT) STATS_PORT="$value" ;;
+			RIST_PROFILE) RIST_PROFILE="$value" ;;
         esac
     done < "credentials.txt"
     
@@ -112,6 +114,10 @@ if [ -f "credentials.txt" ]; then
         echo "STATS_PORT=$STATS_PORT" >> credentials.txt
         echo "Added STATS_PORT=$STATS_PORT to credentials.txt"
     fi
+	if ! grep -q "^RIST_PROFILE=" credentials.txt; then
+        echo "RIST_PROFILE=$RIST_PROFILE" >> credentials.txt
+        echo "Added RIST_PROFILE=$RIST_PROFILE to credentials.txt"
+    fi
 else
     # Generate random username with "moo-" prefix (max 20 chars total)
     chars="abcdefghijklmnopqrstuvwxyz0123456789"
@@ -137,6 +143,7 @@ else
     echo "RIST_SENDER_PORT=$RIST_SENDER_PORT" >> credentials.txt
     echo "LOOPBACK_PORT=$LOOPBACK_PORT" >> credentials.txt
     echo "STATS_PORT=$STATS_PORT" >> credentials.txt
+	echo "RIST_PROFILE=$RIST_PROFILE" >> credentials.txt
     echo "Credentials saved to credentials.txt"
 fi
 
@@ -153,6 +160,7 @@ echo "RIST Receiver Port: $RIST_RECEIVER_PORT"
 echo "RIST Sender Port: $RIST_SENDER_PORT"
 echo "Loopback Port: $LOOPBACK_PORT"
 echo "Stats Feedback Port: $STATS_PORT"
+echo "Rist Profile: $RIST_PROFILE"
 echo ""
 
 # Verify that required binaries exist
@@ -186,10 +194,10 @@ sleep 3
 
 # Run both RIST commands in background (no encryption)
 echo "Starting RIST tools..."
-./librist/tools/ristreceiver -i "rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&username=$USERNAME&password=$PASSWORD" -o "rist://127.0.0.1:$LOOPBACK_PORT" -r "127.0.0.1:$STATS_PORT" -p 1 &
+./librist/tools/ristreceiver -i "rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&username=$USERNAME&password=$PASSWORD" -o "rist://127.0.0.1:$LOOPBACK_PORT" -r "127.0.0.1:$STATS_PORT" -p $RIST_PROFILE &
 RECEIVER_PID=$!
 
-./librist/tools/ristsender -v -1 -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay" -p 1 &
+./librist/tools/ristsender -v -1 -i "udp://@127.0.0.1:$LOOPBACK_PORT" -o "rist://@0.0.0.0:$RIST_SENDER_PORT?cname=moo-rist-relay" -p $RIST_PROFILE &
 SENDER_PID=$!
 
 echo "All processes are running in the background:"
