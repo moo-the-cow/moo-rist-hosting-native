@@ -10,3 +10,18 @@ have a look at [librist old glibc](https://github.com/moo-the-cow/moo-rist-hosti
 and extract it to your folder and overwrite it
 
 ```rm -f librist.tar.gz && curl -L -O https://github.com/moo-the-cow/moo-rist-hosting-native/raw/refs/heads/main/patches/librist.tar.gz && tar xvfz librist.tar.gz --overwrite```
+
+### I'm using an older librist version on my sender and it doesn't work anymore, whats the issue?
+if you get an error like
+```
+librist 0.2.15 or earlier, the SRP wire format changed in 0.2.16 for RFC 5054 / TR-06-2 compliance. To interoperate with an older peer, add ?srp-compat=1 on BOTH URLs. Otherwise check the password.
+```
+then you will have to add `srp-compat=1` to the ristreceiver url arguments in the scripts manually
+like
+```
+# Build receiver URL based on NOAUTH setting
+if [ "$NOAUTH" = "true" ]; then
+    RECEIVER_URL="rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&srp-compat=1&aes-type=$ENCRYPTION&secret=$SECRET"
+else
+    RECEIVER_URL="rist://@0.0.0.0:$RIST_RECEIVER_PORT?rtt-min=100&srp-compat=1&username=$USERNAME&password=$PASSWORD"
+fi```
