@@ -5,7 +5,7 @@ Create a MediaSource Item and uncheck "local"
 ### HOME NETWORK
 RELAY_PORT is by default 5556
 
-put `rist://[RELAY_IP]:[RELAY_PORT]?cname=irlbox` into Input
+put `rist://[RELAY_IP]:[RELAY_PORT]?cname=irlbox&buffer=1800` into Input
 
 put `mpegts` into Input Format
 
