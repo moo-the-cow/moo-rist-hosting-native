@@ -13,6 +13,8 @@ If you plan to go for multiple instances you want to use this instead:
 
 **⚠️Please update to 0.2.19-rc2-40-g47f3f3b or higher version if you use an earlier one, there has been a vital update by the author**
 
+## Important temporary issue: WINDOWS build is glitching, I am working on a solution
+
 ---
 ## Description
 
