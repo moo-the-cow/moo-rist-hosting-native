@@ -1,7 +1,7 @@
 # Self hosting native multiarch RIST receivers for IRL Streaming
 you can contact me on discord: https://discord.gg/khTtNJjFBY
 
-RIST is supported on IRLBOX and IRLWHATEVER (android app)
+RIST is supported on IRLBOX and IRLWHATEVER (android app) => https://irlwhatever.com/
 
 https://play.google.com/store/apps/details?id=com.irlwhatever.app&hl=en
 
